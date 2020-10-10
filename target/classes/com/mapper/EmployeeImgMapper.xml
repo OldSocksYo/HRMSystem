@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace绑定一个Dao/Mapper接口-->
+<mapper namespace="com.mapper.EmployeeImgMapper">
+    <resultMap id="employeeImgMap" type="employeeImg">
+        <result column="id" property="id" />
+        <result column="img_url" property="imgUrl" />
+    </resultMap>
+
+    <insert id="insertEmployeeImg" parameterType="employeeImg" >
+        insert into hrm.employee_img(id, img_url) values (#{id}, #{imgUrl})
+    </insert>
+
+    <delete id="deleteEmployeeImgById" parameterType="java.lang.Integer">
+        delete from hrm.employee_img where id=#{id}
+    </delete>
+
+    <update id="updateEmployeeImgById" parameterType="employeeImg">
+        update hrm.employee_img
+        <set>
+            <if test="imgUrl != null">
+                img_url = #{imgUrl}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="findEmployeeImgById" parameterType="java.lang.Integer" resultMap="employeeImgMap">
+        select * from hrm.employee_img where id = #{id}
+    </select>
+
+    <select id="findAllEmployeeImg" resultMap="employeeImgMap">
+        select * from hrm.employee_img;
+    </select>
+
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace绑定一个Dao/Mapper接口-->
+<mapper namespace="com.mapper.EmployeeMapper">
+    <!--    结果集映射-->
+    <resultMap id="EmployeeMap" type="employee">
+        <!--column和property一样的可以省略-->
+        <result column="id" property="id"/>
+        <result column="department_id" property="departmentId"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="email" property="email"/>
+    </resultMap>
+    <!--    实现UserMapper接口中的insertUser抽象方法-->
+    <!--    userGeneratedKeys属性，设置是否使用JDBC的getGeneratedKeys方法获得主键值并且赋值到keyProperty指定的属性中-->
+    <insert id="insertEmployee" useGeneratedKeys="true" keyProperty="id" parameterType="employee">
+        insert into employee(id, department_id, name, sex, phone_number, email) values(#{id}, #{departmentId}, #{name}, #{sex}, #{phoneNumber}, #{email})
+    </insert>
+
+    <delete id="deleteEmployeeById" parameterType="java.lang.Integer">
+        delete from employee where id = #{id}
+    </delete>
+
+    <update id="updateEmployeeById" parameterType="employee">
+        update employee
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="departmentId != null">
+                department_id = #{departmentId},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex !=null">
+                sex = #{sex},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="findEmployeeById" parameterType="java.lang.Integer" resultMap="EmployeeMap">
+        select * from employee where id = #{id}
+    </select>
+
+    <select id="findEmployeeByDepartmentId" parameterType="java.lang.Integer" resultMap="EmployeeMap">
+        select * from employee where department_id = #{departmentId}
+    </select>
+
+    <select id="findAllEmployee" resultMap="EmployeeMap">
+        select * from employee
+    </select>
+
+</mapper>

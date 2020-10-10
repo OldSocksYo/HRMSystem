@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--mybatis核心配置文件-->
+<configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+<!--    为实体类起别名-->
+    <typeAliases>
+        <package name="com.domain"/>
+    </typeAliases>
+<!--    注册分页插件-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+<!--        该参数设置为true，当pageNum<0时，查询第一页，当pageNum大于最大页数时，查询最后一页-->
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
+<!--     绑定接口-->
+    <mappers>
+        <package name="com.mapper"/>
+    </mappers>
+</configuration>

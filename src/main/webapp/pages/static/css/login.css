@@ -1,0 +1,62 @@
+body{
+    background: url('../images/background.jpg') no-repeat;
+    background-size: 100% auto;
+}
+.login-box{
+    width:30%;
+    height:auto;
+    margin: 8% auto 0;/*上10%，左右auto，下0*/
+    text-align:center;
+    padding:20px 50px;
+}
+.login-box h2{
+    color:#ffffff;
+}
+
+.login-box div{
+    margin-top: 15px;
+}
+
+.login-box div input{
+    border-radius:10px;
+    border: white solid 1px;
+    padding:5px 10px;
+    background:#ffffff00;
+    color:#ffffff;
+    font-size:15px;
+}
+
+.main-input{
+    height: 28px;
+    width: 60%;
+}
+
+.code-input{
+    height: 30px;
+    width: 33%;
+}
+
+.sub-input{
+    height: 33px;
+    width:60%;
+    margin-top:22px;
+    border-radius:10px;
+    border: white solid 2px;
+    padding:5px 10px;
+    background:#99CCCC;
+    color:#ffffff;
+    font-size:15px;
+}
+
+.sub-input:hover{
+    height: 33px;
+    width:60%;
+    margin-top:22px;
+    border-radius:10px;
+    border: white solid 2px;
+    padding:5px 10px;
+    background:#99CCCC;
+    color:#ffffff;
+    font-size:15px;
+    cursor: pointer;
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace绑定一个Dao/Mapper接口-->
+<mapper namespace="com.mapper.DepartmentMapper">
+    <!--    实现UserMapper接口中的insertUser抽象方法-->
+    <!--    userGeneratedKeys属性，设置是否使用JDBC的getGeneratedKeys方法获得主键值并且赋值到keyProperty指定的属性中-->
+    <insert id="insertDepartment" useGeneratedKeys="true" keyProperty="id" parameterType="department">
+        insert into department(id, name, address) values(#{id}, #{name}, #{address})
+    </insert>
+
+    <delete id="deleteDepartmentById" parameterType="java.lang.Integer">
+        delete from department where id = #{id}
+    </delete>
+
+    <update id="updateDepartmentById" parameterType="department">
+        update department
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="findDepartmentById" parameterType="java.lang.Integer" resultType="department">
+        select * from department where id = #{id}
+    </select>
+
+    <select id="findAllDepartment" parameterType="java.lang.Integer" resultType="department">
+        select * from department
+    </select>
+
+</mapper>
+
